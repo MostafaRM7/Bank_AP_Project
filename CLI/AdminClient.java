@@ -36,10 +36,10 @@ public class AdminClient
                 [8] remove Customer
                 [9] Change Employee Password
                 [10] Change Customer Password
-                [11] Show   Customers
-                [12] Show Employees 
-                [13] Show All Accounts 
-                [14] Show Customer's Accounts 
+                [11] Show All Customers
+                [12] Show All Employees
+                [13] Show All Accounts
+                [14] Show Customer's Accounts
                 [15] Search Customer
                 [16] Search Employee
                 [17] Show All Customers
