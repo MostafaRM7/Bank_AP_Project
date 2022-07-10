@@ -69,6 +69,12 @@ public class Employee
     }
     public static ArrayList<Account> getAll_account() {return Account.getAll_accounts();}
     public Customer search_customer_by_national_id(String national_id) {return Customer.get_customer_by_national_id(national_id);}
+    public void remove_customer(String national_id) {
+        Customer c = Customer.get_customer_by_national_id(national_id);
+        Customer.getAll_customers().remove(c);}
+    public void change_customer_password(String national_id, String new_password) {
+        Customer c = Customer.get_customer_by_national_id(national_id);
+        c.set_new_password(new_password);}
     public void Show_customers() {
         Customer.show_all_customers();
     }
