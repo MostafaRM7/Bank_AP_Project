@@ -94,6 +94,9 @@ public class Admin {
     public void Show_accounts() {
         Account.show_all_accounts();
     }
+    public void Show_customer_accounts(Customer c) {
+        c.show_all_accounts();
+    }
     public void creat_new_account(Customer c) {c.creat_new_account();}
     public void remove_account( String national_id ,String account_id) {Customer.get_customer_by_national_id(national_id).remove_account(account_id);}
 
