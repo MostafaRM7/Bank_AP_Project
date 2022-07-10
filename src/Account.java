@@ -7,8 +7,8 @@ public class Account
     private Customer owner;
     private String owner_id;
     private String account_id;
-    private int money = 0;
-    private int loan  = 0;
+    private double money = 0;
+    private double loan  = 0;
     private static int unique_key = 0;
     private static ArrayList<Account> all_accounts = new ArrayList<>();
 
@@ -67,11 +67,11 @@ public class Account
     }
 
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
-    public int getLoan() {
+    public double getLoan() {
         return loan;
     }
 
@@ -95,7 +95,7 @@ public class Account
         return account_id;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         this.money = money;
     }
     public static Account get_account_by_owner(Customer cus)

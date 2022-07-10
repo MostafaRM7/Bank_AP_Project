@@ -12,6 +12,7 @@ public interface SE
     static final String ACCOUNT = "Data\\Account.txt";
     static final String EMPLOYEE = "Data\\Employee.txt";
     static final String TRANSACTION = "Data\\Transaction.txt";
+    static final String DEPOSIT = "Data\\Deposit.txt";
     public static void START()
     {
         StartApp.read_admin_data();
@@ -19,6 +20,7 @@ public interface SE
         StartApp.read_customer_data();
         StartApp.read_account_data();
         StartApp.read_transaction_data();
+        StartApp.read_deposit_data();
     }
     public static void END() throws IOException
     {
@@ -27,6 +29,7 @@ public interface SE
         EndApp.save_customer_data(Customer.getAll_customers());
         EndApp.save_account_data(Account.getAll_accounts());
         EndApp.save_transaction_data(Transaction.getAll_transactions());
+        EndApp.save_deposit_data(Deposit.getAll_deposits());
     }
 
 }

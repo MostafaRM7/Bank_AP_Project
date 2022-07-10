@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public abstract class StartApp implements SE
+public class StartApp implements SE
 {
     private static final Scanner admin_reader;
     private static final Scanner employee_reader;
@@ -14,6 +14,7 @@ public abstract class StartApp implements SE
     private static final Scanner account_reader;
     private static final Scanner account_reader1;
     private static final Scanner transaction_reader;
+    private static final Scanner deposit_reader;
     static
     {
         try
@@ -24,6 +25,7 @@ public abstract class StartApp implements SE
             account_reader = new Scanner(new File(ACCOUNT));
             account_reader1 = new Scanner(new File(ACCOUNT));
             transaction_reader = new Scanner(new File(TRANSACTION));
+            deposit_reader = new Scanner(new File(DEPOSIT));
         }
         catch (FileNotFoundException e)
         {
@@ -95,5 +97,12 @@ public abstract class StartApp implements SE
                             ,Transaction.str_to_date(transaction_reader.next()));
         }
         transaction_reader.close();
+    }
+    public static void read_deposit_data()
+    {
+        while (deposit_reader.hasNext())
+        {
+            new Deposit(Customer.get_customer_by_name(deposit_reader.next()), Integer.parseInt(deposit_reader.next()), Integer.parseInt(deposit_reader.next()));
+        }
     }
 }

@@ -15,6 +15,7 @@ public class EndApp implements SE
     private static FileWriter customer_writer;
     private static FileWriter account_writer;
     private static FileWriter transaction_writer;
+    private static FileWriter deposit_writer;
     private static final String space = "          ";
 
     static {
@@ -24,6 +25,7 @@ public class EndApp implements SE
             customer_writer = new FileWriter(new File(CUSTOMER), true);
             account_writer = new FileWriter(new File(ACCOUNT), true);
             transaction_writer = new FileWriter(new File(TRANSACTION), true);
+            deposit_writer = new FileWriter(new File(DEPOSIT), true);
         } catch (IOException e)
         {
             throw new RuntimeException(e);
@@ -79,5 +81,14 @@ public class EndApp implements SE
         }
         transaction_writer.close();
     }
-
+    public static void save_deposit_data(ArrayList<Deposit> data) throws IOException
+    {
+        PrintWriter file_clear = new PrintWriter(DEPOSIT);
+        file_clear.close();
+        for (Deposit dep: data)
+        {
+            deposit_writer.append(dep.getOwner().getName()+ space + dep.getMoney() + space + dep.getDuration());
+        }
+        deposit_writer.close();
+    }
 }
