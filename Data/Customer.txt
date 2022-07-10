@@ -1,0 +1,3 @@
+mostafa          1743843631          1234          male          0
+davood          1754988792          1234          male          50000
+saleh          123456          1234          male          99999
