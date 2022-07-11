@@ -55,7 +55,7 @@ public class StartApp implements SE
     {
         while (customer_reader.hasNext())
         {
-            new Customer(customer_reader.next(), customer_reader.next(), customer_reader.next(),customer_reader.next(), Integer.parseInt(customer_reader.next()));
+            new Customer(customer_reader.next(), customer_reader.next(), customer_reader.next(),customer_reader.next(), Double.parseDouble(customer_reader.next()));
         }
         customer_reader.close();
 

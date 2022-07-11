@@ -7,12 +7,12 @@ public class Customer
     private String name;
     private String national_id;
     private String password;
-    private int initial_money;
+    private double initial_money;
     private String gender;
     private ArrayList<Account> all_accounts = new ArrayList<>();
     private static ArrayList<Customer> all_customers = new ArrayList<>();
 
-    public Customer(String name, String national_id, String password, String gender, int initial_money) {
+    public Customer(String name, String national_id, String password, String gender, double initial_money) {
         this.name = name;
         this.national_id = national_id;
         this.password = password;
@@ -24,7 +24,7 @@ public class Customer
     public Customer() {
     }
 
-    public void setInitial_money(int initial_money) {
+    public void setInitial_money(double initial_money) {
         this.initial_money = initial_money;
     }
 
@@ -110,7 +110,7 @@ public class Customer
         return password;
     }
 
-    public int getInitial_money() {
+    public double getInitial_money() {
         return initial_money;
     }
 

@@ -51,7 +51,7 @@ public class Employee
     }
 
     // main methods
-    public void add_customer(String name, String national_id, String password, String gender, int initial_money)
+    public void add_customer(String name, String national_id, String password, String gender, double initial_money)
     {
         Auth.customer_sign_up(name, national_id, password, gender ,initial_money);
     }

@@ -32,7 +32,7 @@ public class CustomerClient
                 System.out.println("Male\\female:");
                 String gender = input.nextLine();
                 System.out.println("How much money do you have?");
-                int initial_money = input.nextInt();
+                double initial_money = input.nextDouble();
                 Auth.customer_sign_up(name, nid, pass, gender,initial_money);
             }
             else if (choose.equals("2")) // sign in
