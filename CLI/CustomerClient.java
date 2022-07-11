@@ -61,7 +61,7 @@ public class CustomerClient
                         System.out.println("Account ID:");
                         String acc_id = input.nextLine();
                         System.out.println("Amount:");
-                        int amount = input.nextInt();
+                        Double amount = input.nextDouble();
                         if(cus.get_account_by_id(acc_id) != null)
                         {
                             cus.get_account_by_id(acc_id).charge_account(amount);

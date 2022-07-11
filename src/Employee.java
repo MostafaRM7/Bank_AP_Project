@@ -1,5 +1,6 @@
 package Bank_AP_Project.src.src;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Employee
@@ -17,6 +18,7 @@ public class Employee
         this.name = name;
         this.national_id = national_id;
         this.password = password;
+        this.salary=salary;
         all_employees.add(this);
     }
     public Employee(String name, String national_id, String password) {
@@ -58,8 +60,16 @@ public class Employee
     public void show_all_accounts() {
         Account.show_all_accounts();
     }
-    public void show_customer_accounts(Customer c) {
-        c.show_all_accounts();
+    public void show_customer_accounts(String national_id)
+    {
+        if(Customer.get_customer_by_national_id(national_id)==null)
+        {
+            System.out.println("Customer didn't Found !");
+        }
+        else
+        {
+        Customer.get_customer_by_national_id(national_id).show_all_accounts();
+        }
     }
     public void creat_new_account(Customer c)
     {
@@ -71,9 +81,11 @@ public class Employee
     }
     public static void show_all_employees()
     {
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
         for (Employee emp: all_employees)
         {
             System.out.println(emp);
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
         }
     }
     public static Employee get_employee_by_national_id(String national_id)
@@ -94,19 +106,51 @@ public class Employee
         return c.getAll_accounts();
     }
     public static ArrayList<Account> getAll_account() {return Account.getAll_accounts();}
-    public Customer search_customer_by_national_id(String national_id) {return Customer.get_customer_by_national_id(national_id);}
-    public void remove_customer(String national_id) {
-        Customer c = Customer.get_customer_by_national_id(national_id);
-        Customer.getAll_customers().remove(c);}
+    public Customer search_customer_by_national_id(String national_id)
+    {   if(Customer.get_customer_by_national_id(national_id)==null)
+        {
+            System.out.println("Customer didn't Found !");
+        }
+        else
+        {
+            return Customer.get_customer_by_national_id(national_id);
+        }
+        return null;
+    }
+    public void remove_customer(String national_id)
+    {
+       if (Customer.get_customer_by_national_id(national_id)==null)
+       {
+           System.out.println("Customer didn't Found!");
+       }
+       else
+       {
+           Customer.getAll_customers().remove(Customer.get_customer_by_national_id(national_id));
+           System.out.println("Removed !");
+       }
+    }
     public void change_customer_password(String national_id, String new_password)
     {
+        if(Customer.get_customer_by_national_id(national_id)==null)
+        {
+            System.out.println("Customer didn't Found");
+        }
+        else
+        {
         Customer.get_customer_by_national_id(national_id).set_new_password(new_password);
+            System.out.println("Set !");
+        }
     }
     public void Show_customers() {
         Customer.show_all_customers();
     }
-    public void Show_accounts() {
+    public void Show_accounts()
+    {
         Account.show_all_accounts();
+    }
+    public void Show_employees()
+    {
+        Employee.show_all_employees();
     }
     public Account search_account_by_account_id(String national_id,String account_id)
     {return Customer.get_customer_by_national_id(national_id).get_account_by_id(account_id);}
@@ -126,6 +170,10 @@ public class Employee
     {
         System.out.println(Account.get_account_by_id(account_id).toString());
     }
+
+
+
+
     @Override
     public String toString() {
         return "Employee{" +

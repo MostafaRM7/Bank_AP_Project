@@ -3,6 +3,7 @@ package Bank_AP_Project.src.CLI;
 import Bank_AP_Project.src.SEApp.SE;
 import Bank_AP_Project.src.src.*;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class AdminClient
@@ -21,98 +22,202 @@ public class AdminClient
                 String nid = input.nextLine();
                 System.out.println("Password:");
                 String pass = input.nextLine();
-                admin_menu: while (true)
+               Admin admin = Auth.admin_login(nid,pass);
+                if(admin == null)
                 {
-                    Admin_menu();
-                    String next_choose = input.nextLine();
-                    if (next_choose.equals("1")) //Add Employee
-                    {
-                        System.out.println("Name :");
-                        String name = input.nextLine();
-                        System.out.println("N.I.D. :");
-                        String NID = input.nextLine();
-                        System.out.println("Password :");
-                        String passward = input.nextLine();
-                        System.out.println("Salary :");
-                        int salary = input.nextInt();
-                        Employee emp = new Employee(name,nid,passward,salary);
-                        Employee.getAll_employees().add(emp);
-                        System.out.println(emp.toString());
+                    System.out.println("National ID or password is incorrect");
+                }
+                else {
 
-                    }
-                    else if(next_choose.equals("2"))
-                    {
+                  Admin_menu:  while (true) {
+                        Admin_menu();
+                        String next_choose = input.nextLine();
+                        if (next_choose.equals("1")) //Add Employee
+                        {
+                            System.out.println("Name :");
+                            String name = input.nextLine();
+                            System.out.println("N.I.D. :");
+                            String NID = input.nextLine();
+                            System.out.println("Password :");
+                            String passward = input.nextLine();
+                            System.out.println("Salary :");
+                            int salary = input.nextInt();
+                            admin.add_employee(name,NID,passward,salary);
+                            System.out.println("made!");
 
-                    }
-                    else if(next_choose.equals("3"))
-                    {
 
-                    }
-                    else if(next_choose.equals("4"))
-                    {
+                        } else if (next_choose.equals("2")) //add customer
+                        {
+                            System.out.println("Name :");
+                            String name = input.nextLine();
+                            System.out.println("N.I.D. :");
+                            String NID = input.nextLine();
+                            System.out.println("Password :");
+                            String passward = input.nextLine();
+                            System.out.println("male/female :");
+                            String gender = input.nextLine();
+                            System.out.println("initial_money :");
+                            Double initial_money = input.nextDouble();
+                            admin.add_customer(name,NID,passward,gender,initial_money);
+                            System.out.println(" made!");
 
-                    }
-                    else if(next_choose.equals("5"))
-                    {
+                        } else if (next_choose.equals("3"))//Add account
+                        {
+                            System.out.println("Enter customer national ID:");
+                            String NID = input.nextLine();
+                            System.out.println();
+                            Customer cus = admin.search_customer_by_national_id(NID);
+                            if (cus == null) {
+                                System.out.println("National ID is incorrect");
+                            } else {
+                                cus.creat_new_account();
+                                System.out.println("Account created successfully");
+                            }
 
-                    }
-                    else if(next_choose.equals("6"))
-                    {
+                        }
+                        else if (next_choose.equals("4"))//Change employee salary
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                            System.out.println("New Salary :");
+                            int salary = input.nextInt();
+                            admin.change_salary(NID,salary);
 
-                    }
-                    else if(next_choose.equals("7"))
-                    {
+                        }
+                        else if (next_choose.equals("5")) //Remove employee
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                             admin.remove_employee(NID);
+                        }
+                        else if (next_choose.equals("6"))//Remove customer
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                            admin.remove_customer(NID);
+                        }
+                        else if (next_choose.equals("7"))//Change employee password
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                            System.out.println("New password :");
+                            String password = input.nextLine();
+                            admin.change_employee_password(NID,password);
+                        }
+                        else if (next_choose.equals("8")) //Change customer password
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                            System.out.println("New password :");
+                            String password = input.nextLine();
+                            admin.change_customer_password(NID,password);
+                        }
+                        else if (next_choose.equals("9"))//Show all customers
+                        {
+                            admin.Show_customers();
+                        }
+                        else if (next_choose.equals("10"))//Show all employees
+                        {
+                            admin.Show_employees();
+                        }
+                        else if (next_choose.equals("11")) //Show all accounts
+                        {
+                            admin.Show_accounts();
+                        }
+                        else if (next_choose.equals("12"))//Show customer's accounts
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                           admin.show_customer_accounts(NID);
+                        }
+                        else if (next_choose.equals("13")) //Search customer
+                        {
+                              System.out.println("N.I.D :");
+                              String NID = input.nextLine();
+                            if(admin.search_customer_by_national_id(NID)==null)
+                            {
 
-                    }
-                    else if(next_choose.equals("8"))
-                    {
+                            }
+                            else
+                            {
+                                System.out.println(admin.search_customer_by_national_id(NID));
+                            }
+                        }
+                        else if (next_choose.equals("14")) //Search employee
+                        {
+                            System.out.println("N.I.D :");
+                            String NID = input.nextLine();
+                            if(admin.search_employee_by_national_id(NID)==null)
+                            {
 
-                    }
-                    else if(next_choose.equals("9"))
-                    {
-
-                    }
-                    else if(next_choose.equals("10"))
-                    {
-
-                    }
-                    else if(next_choose.equals("11"))
-                    {
-
-                    }
-                    else if(next_choose.equals("12"))
-                    {
-
-                    }
-                    else if(next_choose.equals("13"))
-                    {
-
-                    }
-                    else if(next_choose.equals("14"))
-                    {
-
-                    }
-                    else if(next_choose.equals("15"))
-                    {
-
-                    }
-                    else if(next_choose.equals("16"))
-                    {
-
-                    }
-                    else if(next_choose.equals("17"))
-                    {
-
-                    }
-                    else if(next_choose.equals("18"))
-                    {
-
-                    }
-                    else if(next_choose.equals("0"))
-                    {
-                        break admin_menu;
+                            }
+                            else
+                            {
+                                System.out.println(admin.search_employee_by_national_id(NID));
+                            }
+                        }
+                        else if (next_choose.equals("15")) //Show bank transactions
+                        {
+                            for (Transaction tr : Transaction.getAll_transactions())
+                            {
+                                System.out.println(tr);
+                            }
+                        }
+                        else if (next_choose.equals("16")) //Show customer's transactions
+                        {
+                            System.out.println("Enter customer national ID:");
+                            String NID = input.nextLine();
+                            Customer cus = admin.search_customer_by_national_id(NID);
+                            if (cus == null)
+                            {
+                                System.out.println("National ID is incorrect");
+                            }
+                            else
+                            {
+                                for (Account acc : cus.getAll_accounts())
+                                {
+                                    for (Transaction tr : Transaction.get_account_transaction(acc))
+                                    {
+                                        System.out.println(tr);
+                                    }
+                                }
+                            }
+                        }
+                        else if (next_choose.equals("17")) //Show account's transactions
+                        {
+                            System.out.println("Enter account ID:");
+                            String acc_id = input.nextLine();
+                            for (Transaction tr : Transaction.get_account_transaction(Account.get_account_by_id(acc_id)))
+                            {
+                                System.out.println(tr);
+                            }
+                        }
+                        else if (next_choose.equals("18"))//transaction between accounts
+                        {
+                            System.out.println("Enter origin account ID:");
+                            String or_id = input.nextLine();
+                            System.out.println("Enter destination account ID:");
+                            String des_id = input.nextLine();
+                            Account from = Account.get_account_by_id(or_id);
+                            Account to = Account.get_account_by_id(des_id);
+                            if (from != null && to != null)
+                            {
+                                System.out.println("How much money do you want to withdraw:");
+                                int amount = input.nextInt();
+                                new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
+                            }
+                            else
+                            {
+                                System.out.println("Destination or origin account ID incorrect");
+                            }
+                        }
+                         else if (next_choose.equals("0"))
+                         {
+                            break Admin_menu;
+                        }
                     }
                 }
+
             }
 
             else if (choose.equals("0"))
@@ -122,12 +227,20 @@ public class AdminClient
 
         }
 
+        try
+        {
+            SE.END();
+        }
+        catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
+
 }
     private static void main_menu()
     {
         String menu = """
                 [1] Sign in
-                
                 [0] Exit
                 """;
         System.out.println(menu);
@@ -139,19 +252,20 @@ public class AdminClient
                 [2] Add customer
                 [3] Add account
                 [4] Change employee salary
-                [7] Remove employee
-                [8] Remove customer
-                [9] Change employee password
-                [10] Change customer password
-                [11] Show all customers
-                [12] Show all employees
-                [13] Show all accounts
-                [14] Show customer's accounts
-                [15] Search customer
-                [16] Search employee
-                [17] Show all customers
-                [18] Show all employee
-                
+                [5] Remove employee
+                [6] Remove customer
+                [7] Change employee password
+                [8] Change customer password
+                [9] Show all customers
+                [10] Show all employees
+                [11] Show all accounts
+                [12] Show customer's accounts
+                [13] Search customer
+                [14] Search employee
+                [15] Show bank transactions
+                [16] Show customer's transactions
+                [17] Show account's transactions
+                [18] Do transaction between 2 accounts
                 [0] Exit to main menu
                 """;
         System.out.println(menu);

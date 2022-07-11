@@ -32,7 +32,7 @@ public class Account
 
     }
 
-    public void charge_account(int money)
+    public void charge_account(Double money)
     {
         if(owner.getInitial_money() < money)
         {
@@ -76,10 +76,11 @@ public class Account
     }
 
     public static void show_all_accounts()
-    {
+    {                   System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         for (Account acc: all_accounts)
         {
             System.out.println(acc);
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
 

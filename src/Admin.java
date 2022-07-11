@@ -26,30 +26,64 @@ public class Admin extends Employee {
 
     public void change_salary(String national_id, int new_salary) {
         ArrayList<Employee> all_Employees = Employee.getAll_employees();
-
-        for (Employee emp : all_Employees) {
-            if (emp.getNational_id().equals(national_id)) {
-                {
+         boolean flag=false;
+        for (Employee emp : all_Employees)
+        {
+            if (emp.getNational_id().equals(national_id))
+            {
                     emp.set_salary(new_salary);
-                }
-            } else {
-                System.out.println("There's no employee with this name/national ID");
+                    flag=true;
             }
         }
+        if(!flag)
+        {
+            System.out.println("employee didn't found");
+        }
+
+
     }
 
-    public void remove_employee(String national_id) {
-        Employee e = Employee.get_employee_by_national_id(national_id);
-        Employee.getAll_employees().remove(e);
+    public void remove_employee(String national_id)
+    {
+        if(Employee.get_employee_by_national_id(national_id)==null)
+        {
+            System.out.println("employee didn't found");
+        }
+        else
+        {
+            Employee.getAll_employees().remove(Employee.get_employee_by_national_id(national_id));
+            System.out.println("Removed!");
+        }
     }
 
     public void change_employee_password(String national_id, String new_password)
     {
-        Employee.get_employee_by_national_id(national_id).set_new_password(new_password);
+        if(Employee.get_employee_by_national_id(national_id)==null)
+        {
+            System.out.println("Employe didn't Found");
+        }
+        else
+        {
+            Employee.get_employee_by_national_id(national_id).set_new_password(new_password);
+            System.out.println("set !");
+        }
+    }
+    public void add_employee(String name,String national_id, String password,int salary)
+    {
+        new Employee(name,national_id,password,salary);
     }
 
-    public Employee search_employee_by_national_id(String national_id) {
-        return Employee.get_employee_by_national_id(national_id);
+    public Employee search_employee_by_national_id(String national_id)
+    {
+        if(Employee.get_employee_by_national_id(national_id)==null)
+        {
+            System.out.println("Employee didn't Found !");
+        }
+        else
+        {
+            return Employee.get_employee_by_national_id(national_id);
+        }
+        return null;
     }
 
     @Override

@@ -30,9 +30,21 @@ public class Auth
         return null;
     }
     // sign up
-    public static void customer_sign_up(String name,String id,String gender , String password, double initial_money)
+    public static void customer_sign_up(String name,String id,String gender , String password, Double initial_money)
     {
             Customer cus = new Customer(name,id,password,gender,initial_money);
             System.out.println("Sign up successful!\nNow you can login with your N.I.D. and password\n" + cus);
+    }
+    public static Admin admin_login(String id, String password)
+    {
+        ArrayList<Admin> admins = Admin.getAll_admins();
+        for (Admin add:admins)
+        {
+            if(add.getNational_id().equals(id) && add.getPassword().equals(password))
+            {
+                return add;
+            }
+        }
+        return null;
     }
 }

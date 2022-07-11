@@ -24,7 +24,7 @@ public class Customer
     public Customer() {
     }
 
-    public void setInitial_money(double initial_money) {
+    public void setInitial_money(Double initial_money) {
         this.initial_money = initial_money;
     }
 
@@ -89,16 +89,20 @@ public class Customer
 
     public static void show_all_customers()
     {
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
         for (Customer cus: all_customers)
         {
             System.out.println(cus);
+            System.out.println("--------------------------------------------------------------------------------------------------------------");
         }
     }
     public void show_all_accounts()
     {
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         for (Account acc: all_accounts)
         {
             System.out.println(acc);
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
 

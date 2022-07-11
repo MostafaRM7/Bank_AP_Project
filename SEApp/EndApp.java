@@ -76,7 +76,7 @@ public class EndApp implements SE
         file_clear.close();
         for (Transaction tr: data)
         {
-            transaction_writer.append(tr.getAmount() + space + tr.getFrom().getOwner().getName() + space + tr.getTo().getOwner().getName() + space + tr.getDate());
+            transaction_writer.append(tr.getAmount() + space + tr.getFrom().getOwner().getName() + space + tr.getTo().getOwner().getName() + space + tr.getDate() + "\n");
         }
         transaction_writer.close();
     }

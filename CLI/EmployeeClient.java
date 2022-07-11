@@ -3,37 +3,33 @@ package Bank_AP_Project.src.CLI;
 import Bank_AP_Project.src.SEApp.SE;
 import Bank_AP_Project.src.src.*;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class EmployeeClient
-{
-    public static void main(String[] args)
-    {
+public class EmployeeClient {
+    public static void main(String[] args) {
         SE.START();
         System.out.println("----------------------- WELCOME -----------------------");
         Scanner input = new Scanner(System.in);
-        main_menu:while (true)
-        {
+        main_menu:
+        while (true) {
             main_menu();
             String choose = input.nextLine();
-            if(choose.equals("1"))
-            {
+            if (choose.equals("1")) {
                 System.out.println("Enter your N.I.D. :");
                 String nid = input.nextLine();
                 System.out.println("Enter your password :");
                 String pass = input.nextLine();
                 Employee emp = Auth.employee_login(nid, pass);
-                if(emp == null)
-                {
+                if (emp == null) {
                     System.out.println("National ID or password is incorrect");
-                }
-                else {
-                    employee_menu();
+                } else {
                     employee_menu:
                     while (true) {
+                        employee_menu();
                         String next_choose = input.nextLine();
                         if (next_choose.equals("1")) {
                             System.out.println("Name:");
@@ -110,14 +106,37 @@ public class EmployeeClient
                                     }
                                 }
                             }
-                        } else if (next_choose.equals("10")) {
+                        }
+                        else if (next_choose.equals("10"))
+                        {
                             System.out.println("Enter account ID:");
                             String acc_id = input.nextLine();
-                            for (Transaction tr : Transaction.get_account_transaction(Account.get_account_by_id(acc_id))) {
+                            for (Transaction tr : Transaction.get_account_transaction(Account.get_account_by_id(acc_id)))
+                            {
                                 System.out.println(tr);
                             }
 
-                        } else if (next_choose.equals("11")) {
+                        }
+                        else if (next_choose.equals("11"))
+                        {
+                            System.out.println("Enter origin account ID:");
+                            String or_id = input.nextLine();
+                            System.out.println("Enter destination account ID:");
+                            String des_id = input.nextLine();
+                            Account from = Account.get_account_by_id(or_id);
+                            Account to = Account.get_account_by_id(des_id);
+                            if (from != null && to != null)
+                            {
+                                System.out.println("How much money do you want to withdraw:");
+                                int amount = input.nextInt();
+                                new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
+                            }
+                            else
+                            {
+                                System.out.println("Destination or origin account ID incorrect");
+                            }
+                        }
+                        else if (next_choose.equals("12")) {
                             System.out.println("Enter customer national ID:");
                             String NID = input.nextLine();
                             Customer cus = emp.search_customer_by_national_id(NID);
@@ -131,13 +150,23 @@ public class EmployeeClient
                         }
                     }
                 }
-            }
-            else if (choose.equals("0"))
-            {
+            } else if (choose.equals("0")) {
                 break main_menu;
             }
         }
+        try
+        {
+            SE.END();
+        }
+        catch (Exception ee)
+        {
+            ee.printStackTrace();
+        }
     }
+
+
+
+
     public static void main_menu()
     {
         String menu = """
@@ -159,7 +188,8 @@ public class EmployeeClient
                 [8] Show bank transactions
                 [9] Show customer's transactions
                 [10] Show account's transactions
-                [11] Search customer
+                [11] Do transaction between 2 accounts
+                [12] Search customer
                 
                 [0] Exit to main menu
                 """;
