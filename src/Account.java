@@ -25,7 +25,8 @@ public class Account
         this.account_id = id_creator();
         this.owner_id = owner.getNational_id();
         this.money = money;
-        all_accounts.add(this);
+        if(!(this instanceof Deposit))
+            all_accounts.add(this);
     }
     public Account() {
 

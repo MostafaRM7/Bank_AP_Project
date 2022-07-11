@@ -15,8 +15,17 @@ public class Deposit extends Account
     public Deposit(Customer owner, double money, int duration)
     {
         super(owner, money);
-        this.duration = duration;
-        all_deposits.add(this);
+        if(owner.getInitial_money() >= money)
+        {
+            owner.setInitial_money(owner.getInitial_money() - money);
+            this.duration = duration;
+            all_deposits.add(this);
+        }
+        else
+        {
+            System.out.println("Not enough money");
+        }
+
     }
     public void add_profit()
     {
@@ -39,6 +48,14 @@ public class Deposit extends Account
 
     public static ArrayList<Deposit> getAll_deposits() {
         return all_deposits;
+    }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                super.toString() +"," +
+                "duration=" + duration +
+                '}';
     }
 }
 

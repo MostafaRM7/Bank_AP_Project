@@ -1,5 +1,5 @@
 mostafa          1743843631          1234          male          0.0
 davood          1754988792          1234          male          50000.0
-saleh          123456          1234          male          99999.0
+saleh          123456          1234          male          89999.0
 asghar          002          male          123          150000.0
 d          5          6          5          1200.0

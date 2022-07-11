@@ -11,6 +11,7 @@ public class Customer
     private String gender;
     private int unique_key = 0;
     private ArrayList<Account> all_accounts = new ArrayList<>();
+    private ArrayList<Deposit> all_deposits = new ArrayList<>();
     private static ArrayList<Customer> all_customers = new ArrayList<>();
 
     public Customer(String name, String national_id, String password, String gender, double initial_money) {
@@ -149,9 +150,16 @@ public class Customer
         else
         {
             System.out.println("Deposit account created successfully");
-            return new Deposit(this,money,duration);
+            Deposit d = new Deposit(this,money,duration);
+            all_deposits.add(d);
+            return d;
         }
     }
+
+    public ArrayList<Deposit> getAll_deposits() {
+        return all_deposits;
+    }
+
     public void unique_key_plus() {
         this.unique_key ++;
     }

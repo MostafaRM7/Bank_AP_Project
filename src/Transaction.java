@@ -50,7 +50,7 @@ public class Transaction
     }
     public static LocalDateTime str_to_date(String date)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSSSSS");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
         LocalDateTime date_time = LocalDateTime.parse(date, formatter);
         return date_time;
     }

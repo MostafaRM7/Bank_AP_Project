@@ -15,6 +15,7 @@ public class StartApp implements SE
     private static final Scanner account_reader1;
     private static final Scanner transaction_reader;
     private static final Scanner deposit_reader;
+    private static final Scanner deposit_reader1;
     static
     {
         try
@@ -26,6 +27,7 @@ public class StartApp implements SE
             account_reader1 = new Scanner(new File(ACCOUNT));
             transaction_reader = new Scanner(new File(TRANSACTION));
             deposit_reader = new Scanner(new File(DEPOSIT));
+            deposit_reader1 = new Scanner(new File(DEPOSIT));
         }
         catch (FileNotFoundException e)
         {
@@ -100,9 +102,26 @@ public class StartApp implements SE
     }
     public static void read_deposit_data()
     {
+        Customer cus = new Customer();
+        Deposit dep;
         while (deposit_reader.hasNext())
         {
-            new Deposit(Customer.get_customer_by_name(deposit_reader.next()), Integer.parseInt(deposit_reader.next()), Integer.parseInt(deposit_reader.next()));
+            cus = Customer.get_customer_by_name(deposit_reader.next());
+            //                            name                                                    money                                       duration
+            dep = new Deposit(cus, Double.parseDouble(deposit_reader.next()), Integer.parseInt(deposit_reader.next()));
+            deposit_reader.next();
+            while (deposit_reader1.hasNext())
+            {
+                deposit_reader1.next();
+                deposit_reader1.next();
+                deposit_reader1.next();
+                String owner_id = deposit_reader1.next();
+                if(owner_id.equals(cus.getNational_id()))
+                {
+                    cus.getAll_deposits().add(dep);
+                    break;
+                }
+            }
         }
     }
 }
