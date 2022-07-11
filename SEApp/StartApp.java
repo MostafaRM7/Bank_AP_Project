@@ -67,7 +67,7 @@ public class StartApp implements SE
         while (account_reader.hasNext())
         {
             cus = Customer.get_customer_by_name(account_reader.next());
-            acc = new Account(cus, Integer.parseInt(account_reader.next()));
+            acc = new Account(cus, Double.parseDouble(account_reader.next()));
             account_reader.next();
             while (account_reader1.hasNext())
             {

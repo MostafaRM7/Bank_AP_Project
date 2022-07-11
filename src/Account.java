@@ -20,7 +20,7 @@ public class Account
         all_accounts.add(this);
     }
 
-    public Account(Customer owner, int money) // we use this for reading data from files
+    public Account(Customer owner, double money) // we use this for reading data from files
     {
         this.owner = owner;
         this.account_id = id_creator();

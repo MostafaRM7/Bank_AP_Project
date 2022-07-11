@@ -3,9 +3,6 @@ package Bank_AP_Project.src.src;
 import java.util.ArrayList;
 
 public class Admin extends Employee {
-    private String name;
-    private String national_id;
-    private String password;
     private static ArrayList<Admin> all_admins = new ArrayList<>();
 
     public Admin(String name, String national_id, String password) {
@@ -46,7 +43,8 @@ public class Admin extends Employee {
         Employee.getAll_employees().remove(e);
     }
 
-    public void change_employee_password(String national_id, String new_password) {
+    public void change_employee_password(String national_id, String new_password)
+    {
         Employee.get_employee_by_national_id(national_id).set_new_password(new_password);
     }
 
@@ -56,11 +54,7 @@ public class Admin extends Employee {
 
     @Override
     public String toString() {
-        return "Admin{" +
-                "name='" + name + '\'' +
-                ", national_id='" + national_id + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Admin{" + "name='" + this.getName() + '\'' + ", national_id='" + this.getNational_id() + '\'' + ", password='" + this.getPassword() + '\'' + '}';
     }
 }
 

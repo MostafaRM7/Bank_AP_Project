@@ -12,7 +12,7 @@ public class Deposit extends Account
 
     private static ArrayList<Deposit> all_deposits = new ArrayList<>();
 
-    public Deposit(Customer owner, int money, int duration)
+    public Deposit(Customer owner, double money, int duration)
     {
         super(owner, money);
         this.duration = duration;

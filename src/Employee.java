@@ -45,7 +45,8 @@ public class Employee
     public void set_salary(int salary) {
         this.salary = salary;
     }
-    public void set_new_password(String password) {
+    public void set_new_password(String password) throws NullPointerException
+    {
         this.password = password;
     }
 

@@ -2,7 +2,6 @@ package Bank_AP_Project.src.SEApp;
 
 import Bank_AP_Project.src.src.*;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,22 +9,22 @@ import java.util.ArrayList;
 
 public class EndApp implements SE
 {
-    private static FileWriter admin_writer;
-    private static FileWriter employee_writer;
-    private static FileWriter customer_writer;
-    private static FileWriter account_writer;
-    private static FileWriter transaction_writer;
-    private static FileWriter deposit_writer;
+    private static final FileWriter admin_writer;
+    private static final FileWriter employee_writer;
+    private static final FileWriter customer_writer;
+    private static final FileWriter account_writer;
+    private static final FileWriter transaction_writer;
+    private static final FileWriter deposit_writer;
     private static final String space = "          ";
 
     static {
         try {
-            admin_writer = new FileWriter(new File(ADMIN), true);
-            employee_writer = new FileWriter(new File(EMPLOYEE), true);
-            customer_writer = new FileWriter(new File(CUSTOMER), true);
-            account_writer = new FileWriter(new File(ACCOUNT), true);
-            transaction_writer = new FileWriter(new File(TRANSACTION), true);
-            deposit_writer = new FileWriter(new File(DEPOSIT), true);
+            admin_writer = new FileWriter(ADMIN, true);
+            employee_writer = new FileWriter(EMPLOYEE, true);
+            customer_writer = new FileWriter(CUSTOMER, true);
+            account_writer = new FileWriter(ACCOUNT, true);
+            transaction_writer = new FileWriter(TRANSACTION, true);
+            deposit_writer = new FileWriter(DEPOSIT, true);
         } catch (IOException e)
         {
             throw new RuntimeException(e);

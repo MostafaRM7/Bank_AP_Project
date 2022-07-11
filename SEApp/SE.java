@@ -3,17 +3,16 @@ package Bank_AP_Project.src.SEApp;
 import Bank_AP_Project.src.src.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public interface SE
 {
-    static final String ADMIN = "Data\\Admin.txt";
-    static final String CUSTOMER = "Data\\Customer.txt";
-    static final String ACCOUNT = "Data\\Account.txt";
-    static final String EMPLOYEE = "Data\\Employee.txt";
-    static final String TRANSACTION = "Data\\Transaction.txt";
-    static final String DEPOSIT = "Data\\Deposit.txt";
-    public static void START()
+    String ADMIN = "Data\\Admin.txt";
+    String CUSTOMER = "Data\\Customer.txt";
+    String ACCOUNT = "Data\\Account.txt";
+    String EMPLOYEE = "Data\\Employee.txt";
+    String TRANSACTION = "Data\\Transaction.txt";
+    String DEPOSIT = "Data\\Deposit.txt";
+    static void START()
     {
         StartApp.read_admin_data();
         StartApp.read_employee_data();
@@ -22,7 +21,7 @@ public interface SE
         StartApp.read_transaction_data();
         StartApp.read_deposit_data();
     }
-    public static void END() throws IOException
+    static void END() throws IOException
     {
         EndApp.save_admin_data(Admin.getAll_admins());
         EndApp.save_employee_data(Employee.getAll_employees());
