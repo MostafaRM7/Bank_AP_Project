@@ -27,6 +27,20 @@ public class Transaction
         {
             System.out.println("Your account balance is not enough");
         }
+        else if (this.from instanceof Deposit)
+        {
+            Deposit d = (Deposit) from;
+            if(d.getDuration() == 0)
+            {
+                from.setMoney(from.getMoney() - this.amount);
+                to.setMoney(to.getMoney() + this.amount);
+                System.out.println("Withdraw on deposit account successful");
+            }
+            else
+            {
+                System.out.println("There is still remaining"+ d.getDuration() + " months from your deposit");
+            }
+        }
         else
         {
             from.setMoney(from.getMoney() - this.amount);

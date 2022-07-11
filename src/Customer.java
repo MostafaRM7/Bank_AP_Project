@@ -9,6 +9,7 @@ public class Customer
     private String password;
     private double initial_money;
     private String gender;
+    private int unique_key = 0;
     private ArrayList<Account> all_accounts = new ArrayList<>();
     private static ArrayList<Customer> all_customers = new ArrayList<>();
 
@@ -123,7 +124,7 @@ public class Customer
     }
     public Account creat_new_account()
     {
-        Account acc=new Account(this);
+        Account acc = new Account(this);
         all_accounts.add(acc);
         return acc;
     }
@@ -134,6 +135,26 @@ public class Customer
     }
 
     public String getGender() {return gender;}
+
+    public int getUnique_key() {
+        return unique_key;
+    }
+    public Deposit create_deposit_account(double money, int duration)
+    {
+        if (money > initial_money)
+        {
+            System.out.println("You dont have enough money");
+            return null;
+        }
+        else
+        {
+            System.out.println("Deposit account created successfully");
+            return new Deposit(this,money,duration);
+        }
+    }
+    public void unique_key_plus() {
+        this.unique_key ++;
+    }
 }
 
 

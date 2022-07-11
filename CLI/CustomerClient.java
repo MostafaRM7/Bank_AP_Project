@@ -4,10 +4,8 @@ package Bank_AP_Project.src.CLI;
 import Bank_AP_Project.src.SEApp.SE;
 import Bank_AP_Project.src.src.*;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class CustomerClient
 {
@@ -117,7 +115,14 @@ public class CustomerClient
                             System.out.println("Password is incorrect");
                         }
                     }
-                    else if (next_choose.equals("0")) // exit
+                    else if (next_choose.equals("9"))
+                    {
+                        System.out.println("How much money do you want to deposit:");
+                        double money = input.nextDouble();
+                        System.out.println("24/12 month?");
+                        int dur = input.nextInt();
+                        cus.create_deposit_account(money,dur);
+                    } else if (next_choose.equals("0")) // exit
                     {
                         break customer_menu;
                     }
@@ -158,6 +163,7 @@ public class CustomerClient
                 [6] Creat new account
                 [7] Show account transactions
                 [8] Remove account
+                [9] Creat deposit account
                 
                 [0] Exit to main menu
                 """;

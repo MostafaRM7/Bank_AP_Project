@@ -9,7 +9,6 @@ public class Account
     private String account_id;
     private double money = 0;
     private double loan  = 0;
-    private static int unique_key = 0;
     private static ArrayList<Account> all_accounts = new ArrayList<>();
 
     public Account(Customer owner) // we use this for creating new account
@@ -31,8 +30,7 @@ public class Account
     public Account() {
 
     }
-
-    public void charge_account(Double money)
+    public void charge_account(double money)
     {
         if(owner.getInitial_money() < money)
         {
@@ -47,8 +45,8 @@ public class Account
     }
     private String id_creator()
     {
-        unique_key++;
-        return owner.getNational_id() + "-" + unique_key;
+        owner.unique_key_plus();
+        return owner.getNational_id() + "-" + owner.getUnique_key();
     }
     public static Account get_account_by_id(String account_id)
     {
@@ -76,7 +74,7 @@ public class Account
     }
 
     public static void show_all_accounts()
-    {                   System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    {   System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         for (Account acc: all_accounts)
         {
             System.out.println(acc);

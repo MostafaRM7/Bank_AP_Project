@@ -88,7 +88,7 @@ public class StartApp implements SE
         {
             new Transaction
                     (//    amount
-                            Integer.parseInt(transaction_reader.next()),
+                            Double.parseDouble(transaction_reader.next()),
                             // from
                             Account.get_account_by_owner(Customer.get_customer_by_name(transaction_reader.next())),
                             //to
