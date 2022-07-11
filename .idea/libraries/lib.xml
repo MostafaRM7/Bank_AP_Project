@@ -2,6 +2,7 @@
   <library name="lib">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/lib/javafx-sdk-18.0.1/lib" />
+      <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-8.9.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

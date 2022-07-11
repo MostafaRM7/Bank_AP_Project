@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 public class Transaction
 {
-    private int amount;
+    private double amount;
     private LocalDateTime date;
     private Account from;
     private Account to;
     private static ArrayList<Transaction> all_transactions = new ArrayList<>();
 
-    public Transaction(int amount, Account from, Account to, LocalDateTime date) // LocalDateTime.now()
+    public Transaction(double amount, Account from, Account to, LocalDateTime date) // LocalDateTime.now()
     {
         this.amount = amount;
         this.from = from;
@@ -41,7 +41,7 @@ public class Transaction
         return date_time;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
