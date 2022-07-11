@@ -11,6 +11,7 @@ public class Employee
 
     private static ArrayList<Employee> all_employees = new ArrayList<>();
 
+    // Constructors
     public Employee(String name, String national_id, String password, int salary)
     {
         this.name = name;
@@ -18,11 +19,54 @@ public class Employee
         this.password = password;
         all_employees.add(this);
     }
-
-
+    public Employee(String name, String national_id, String password) {
+        this.name = name;
+        this.national_id = national_id;
+        this.password = password;
+    }
+    // getters
+    public String getName() {
+        return name;
+    }
+    public String getNational_id() {
+        return national_id;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public int getSalary() {
+        return salary;
+    }
     public static ArrayList<Employee> getAll_employees()
     {
         return all_employees;
+    }
+    // setters
+    public void set_salary(int salary) {
+        this.salary = salary;
+    }
+    public void set_new_password(String password) {
+        this.password = password;
+    }
+
+    // main methods
+    public void add_customer(String name, String national_id, String password, String gender, int initial_money)
+    {
+        Auth.customer_sign_up(name, national_id, password, gender ,initial_money);
+    }
+    public void show_all_accounts() {
+        Account.show_all_accounts();
+    }
+    public void show_customer_accounts(Customer c) {
+        c.show_all_accounts();
+    }
+    public void creat_new_account(Customer c)
+    {
+        c.creat_new_account();
+    }
+    public void remove_account(String national_id ,String account_id)
+    {
+        Customer.get_customer_by_national_id(national_id).remove_account(account_id);
     }
     public static void show_all_employees()
     {
@@ -42,25 +86,6 @@ public class Employee
         }
         return null;
     }
-
-    public String getName() {
-        return name;
-    }
-    public String getNational_id() {
-        return national_id;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public int getSalary() {
-        return salary;
-    }
-    public void set_salary(int salary) {
-        this.salary = salary;
-    }
-    public void set_new_password(String password) {
-        this.password = password;
-    }
     public static ArrayList<Customer> getAll_customers() {
         return Customer.getAll_customers();
     }
@@ -72,9 +97,10 @@ public class Employee
     public void remove_customer(String national_id) {
         Customer c = Customer.get_customer_by_national_id(national_id);
         Customer.getAll_customers().remove(c);}
-    public void change_customer_password(String national_id, String new_password) {
-        Customer c = Customer.get_customer_by_national_id(national_id);
-        c.set_new_password(new_password);}
+    public void change_customer_password(String national_id, String new_password)
+    {
+        Customer.get_customer_by_national_id(national_id).set_new_password(new_password);
+    }
     public void Show_customers() {
         Customer.show_all_customers();
     }

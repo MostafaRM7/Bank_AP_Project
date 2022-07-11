@@ -42,7 +42,7 @@ public class EmployeeClient
                         String password = input.nextLine();
                         System.out.println("How much money do you have:");
                         int money = input.nextInt();
-                        Auth.customer_sign_up(name, NID, Gender, password, money);
+                        emp.add_customer(name, NID, Gender, password, money);
                     }
                     else if(next_choose.equals(2))
                     {

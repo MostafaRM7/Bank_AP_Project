@@ -1,18 +1,15 @@
 package Bank_AP_Project.src.CLI;
 
 import Bank_AP_Project.src.SEApp.SE;
-import Bank_AP_Project.src.src.Account;
-import Bank_AP_Project.src.src.Auth;
-import Bank_AP_Project.src.src.Customer;
-import Bank_AP_Project.src.src.Employee;
+import Bank_AP_Project.src.src.*;
 
 import java.util.Scanner;
 
 public class AdminClient
 {
     public static void main(String[] args) {
-     System.out.println("----------------------- WELCOME BACK BOSS -----------------------");
         SE.START();
+        System.out.println("----------------------- WELCOME BACK BOSS -----------------------");
         Scanner input = new Scanner(System.in);
         main_menu: while (true)
         {
@@ -24,33 +21,103 @@ public class AdminClient
                 String nid = input.nextLine();
                 System.out.println("Password:");
                 String pass = input.nextLine();
-                Employee e = Auth.employee_login(nid, pass);
-                System.out.println("Name: " + e.getName() + "\n" + "National ID: " + e.getNational_id() + "\n" + "Salary: " + e.getSalary());
+                admin_menu: while (true)
+                {
+                    Admin_menu();
+                    String next_choose = input.nextLine();
+                    if (next_choose.equals("1")) //Add Employee
+                    {
+                        System.out.println("Name :");
+                        String name = input.nextLine();
+                        System.out.println("N.I.D. :");
+                        String NID = input.nextLine();
+                        System.out.println("Password :");
+                        String passward = input.nextLine();
+                        System.out.println("Salary :");
+                        int salary = input.nextInt();
+                        Employee emp = new Employee(name,nid,passward,salary);
+                        Employee.getAll_employees().add(emp);
+                        System.out.println(emp.toString());
 
+                    }
+                    else if(next_choose.equals("2"))
+                    {
+
+                    }
+                    else if(next_choose.equals("3"))
+                    {
+
+                    }
+                    else if(next_choose.equals("4"))
+                    {
+
+                    }
+                    else if(next_choose.equals("5"))
+                    {
+
+                    }
+                    else if(next_choose.equals("6"))
+                    {
+
+                    }
+                    else if(next_choose.equals("7"))
+                    {
+
+                    }
+                    else if(next_choose.equals("8"))
+                    {
+
+                    }
+                    else if(next_choose.equals("9"))
+                    {
+
+                    }
+                    else if(next_choose.equals("10"))
+                    {
+
+                    }
+                    else if(next_choose.equals("11"))
+                    {
+
+                    }
+                    else if(next_choose.equals("12"))
+                    {
+
+                    }
+                    else if(next_choose.equals("13"))
+                    {
+
+                    }
+                    else if(next_choose.equals("14"))
+                    {
+
+                    }
+                    else if(next_choose.equals("15"))
+                    {
+
+                    }
+                    else if(next_choose.equals("16"))
+                    {
+
+                    }
+                    else if(next_choose.equals("17"))
+                    {
+
+                    }
+                    else if(next_choose.equals("18"))
+                    {
+
+                    }
+                    else if(next_choose.equals("0"))
+                    {
+                        break admin_menu;
+                    }
+                }
             }
+
             else if (choose.equals("0"))
             {
                 break main_menu;
-            }
-            customer_menu: while (true)
-            {
-                Admin_menu();
-                String next_choose = input.nextLine();
-                if (next_choose.equals("1")) //Add Employee
-                {
-                    System.out.println("Name :");
-                    String name = input.nextLine();
-                    System.out.println("N.I.D. :");
-                    String nid = input.nextLine();
-                    System.out.println("Password :");
-                    String passward = input.nextLine();
-                    System.out.println("Salary");
-                    int salary = input.nextInt();
-                   Employee e=new Employee(name,nid,passward,salary);
-                   Employee.getAll_employees().add(e);
-                   System.out.println(e.toString());
-
-                }
             }
 
         }
@@ -60,6 +127,7 @@ public class AdminClient
     {
         String menu = """
                 [1] Sign in
+                
                 [0] Exit
                 """;
         System.out.println(menu);
@@ -67,22 +135,23 @@ public class AdminClient
     private static void Admin_menu()
     {
         String menu = """
-                [1] Add Employee
-                [2] Add Customer
-                [3] Add Account
-                [4] Change Employee Salary
-                [7] remove Employee
-                [8] remove Customer
-                [9] Change Employee Password
-                [10] Change Customer Password
-                [11] Show All Customers
-                [12] Show All Employees
-                [13] Show All Accounts
-                [14] Show Customer's Accounts
-                [15] Search Customer
-                [16] Search Employee
-                [17] Show All Customers
-                [18] Show All Employee
+                [1] Add employee
+                [2] Add customer
+                [3] Add account
+                [4] Change employee salary
+                [7] Remove employee
+                [8] Remove customer
+                [9] Change employee password
+                [10] Change customer password
+                [11] Show all customers
+                [12] Show all employees
+                [13] Show all accounts
+                [14] Show customer's accounts
+                [15] Search customer
+                [16] Search employee
+                [17] Show all customers
+                [18] Show all employee
+                
                 [0] Exit to main menu
                 """;
         System.out.println(menu);
