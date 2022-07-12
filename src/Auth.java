@@ -30,7 +30,7 @@ public class Auth
         return null;
     }
     // sign up
-    public static void customer_sign_up(String name,String id,String gender , String password, Double initial_money)
+    public static void customer_sign_up(String name,String id, String password , String gender, Double initial_money)
     {
             Customer cus = new Customer(name,id,password,gender,initial_money);
             System.out.println("Sign up successful!\nNow you can login with your N.I.D. and password\n" + cus);

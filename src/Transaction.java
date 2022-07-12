@@ -23,29 +23,34 @@ public class Transaction
     }
     public void withdraw()
     {
-        if(this.amount > from.getMoney())
+        if(amount > from.getMoney())
         {
             System.out.println("Your account balance is not enough");
         }
-        else if (this.from instanceof Deposit)
+        else if (this.from instanceof Deposit || this.to instanceof Deposit)
         {
-            Deposit d = (Deposit) from;
-            if(d.getDuration() == 0)
+            Deposit d1 = Deposit.get_deposit_by_owner_id(from.getOwner_id());
+            Deposit d2 = Deposit.get_deposit_by_owner_id(to.getOwner_id());
+            if(d1.getDuration() == 0 || d2.getDuration() == 0)
             {
                 from.setMoney(from.getMoney() - this.amount);
                 to.setMoney(to.getMoney() + this.amount);
                 System.out.println("Withdraw on deposit account successful");
             }
-            else
+            else if(d1.getDuration() > 0)
             {
-                System.out.println("There is still remaining"+ d.getDuration() + " months from your deposit");
+                System.out.println("There is still remaining " + d1.getDuration() + " months from your deposit account");
+            }
+            else if (d2.getDuration() > 0)
+            {
+                System.out.println("You destination account cannot do withdrawals");
             }
         }
         else
         {
-            from.setMoney(from.getMoney() - this.amount);
-            to.setMoney(to.getMoney() + this.amount);
-            System.out.println("Withdraw successful");
+            from.setMoney(from.getMoney() - amount);
+            to.setMoney(to.getMoney() + amount);
+            System.out.println("Withdraw on simple account successful");
         }
     }
     public static LocalDateTime str_to_date(String date)

@@ -159,7 +159,17 @@ public class Customer
     public ArrayList<Deposit> getAll_deposits() {
         return all_deposits;
     }
-
+    public Deposit get_deposit_by_id(String id)
+    {
+        for (Deposit dep: all_deposits)
+        {
+            if(dep.getAccount_id().equals(id))
+            {
+                return dep;
+            }
+        }
+        return null;
+    }
     public void unique_key_plus() {
         this.unique_key ++;
     }

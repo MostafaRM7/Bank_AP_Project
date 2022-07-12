@@ -108,8 +108,7 @@ public class StartApp implements SE
         {
             cus = Customer.get_customer_by_name(deposit_reader.next());
             //                            name                                                    money                                       duration
-            dep = new Deposit(cus, Double.parseDouble(deposit_reader.next()), Integer.parseInt(deposit_reader.next()));
-            deposit_reader.next();
+            dep = new Deposit(cus, Double.parseDouble(deposit_reader.next()), Integer.parseInt(deposit_reader.next()), deposit_reader.next());
             while (deposit_reader1.hasNext())
             {
                 deposit_reader1.next();

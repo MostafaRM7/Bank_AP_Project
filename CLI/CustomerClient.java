@@ -14,6 +14,7 @@ public class CustomerClient
         SE.START();
         System.out.println("----------------------- WELCOME -----------------------");
         Account.show_all_accounts();
+        Deposit.show_all_deposits();
         Scanner input = new Scanner(System.in);
         main_menu: while (true)
         {
@@ -64,27 +65,121 @@ public class CustomerClient
                             System.out.println("Account ID:");
                             String acc_id = input.nextLine();
                             System.out.println("Amount:");
-                            Double amount = input.nextDouble();
+                            double amount = input.nextDouble();
                             if (cus.get_account_by_id(acc_id) != null) {
                                 cus.get_account_by_id(acc_id).charge_account(amount);
                             } else {
                                 System.out.println("Account not found !");
                             }
-                        } else if (next_choose.equals("4")) {
-                            // TODO
-                            System.out.println("Enter origin account ID:");
-                            String or_id = input.nextLine();
-                            System.out.println("Enter destination account ID:");
-                            String des_id = input.nextLine();
-                            Account from = cus.get_account_by_id(or_id);
-                            Account to = Account.get_account_by_id(des_id);
-                            if (from != null && to != null) {
-                                System.out.println("How much money do you want to withdraw:");
-                                int amount = input.nextInt();
-                                new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
-                            } else {
-                                System.out.println("Destination or origin account ID incorrect");
+                        }
+                        else if (next_choose.equals("4")) // withdrawal
+                        {
+                            System.out.println("[1] Simple origin account");
+                            System.out.println("[2] Deposit origin account");
+                            String origin_type = input.nextLine();
+                            // origin simple
+                            if(origin_type.equals("1"))
+                            {
+                                System.out.println("Enter origin account ID:");
+                                String or_id = input.nextLine();
+                                Account from = cus.get_account_by_id(or_id);
+                                if(from != null)
+                                {
+                                    System.out.println("[1] Simple destination account");
+                                    System.out.println("[2] Deposit destination account");
+                                    String des_type = input.nextLine();
+                                    //destination simple
+                                    if(des_type.equals("1"))
+                                    {
+                                        System.out.println("Enter destination account ID:");
+                                        String des_id = input.nextLine();
+                                        Account to = Account.get_account_by_id(des_id);
+                                        if (to != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw:");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                    // destination deposit
+                                    else if (des_type.equals("2"))
+                                    {
+                                        System.out.println("Enter deposit account ID:");
+                                        String des_id = input.nextLine();
+                                        Deposit dep = Deposit.get_deposit_by_id(des_id);
+                                        if (dep != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw:");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, from, dep, LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("Origin ID is incorrect");
+                                }
                             }
+                            // origin deposit
+                            else if (origin_type.equals("2"))
+                            {
+                                System.out.println("Enter deposit account ID:");
+                                String or_id = input.nextLine();
+                                Deposit dep = cus.get_deposit_by_id(or_id);
+                                if(dep != null)
+                                {
+                                    System.out.println("[1] Simple destination account");
+                                    System.out.println("[2] Deposit destination account");
+                                    String des_type = input.nextLine();
+                                    // destination simple
+                                    if (des_type.equals("1"))
+                                    {
+                                        System.out.println("Enter origin simple account ID:");
+                                        String des_id = input.nextLine();
+                                        Account to = Account.get_account_by_id(des_id);
+                                        if (to != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, dep, to,LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                    // destination deposit
+                                    else if (des_type.equals("2"))
+                                    {
+                                        System.out.println("Enter deposit account ID:");
+                                        String des_id = input.nextLine();
+                                        Deposit deposit = Deposit.get_deposit_by_id(des_id);
+                                        if (deposit != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw:");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, dep, deposit, LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("Deposit not found");
+                                }
+                            }
+
                         } else if (next_choose.equals("6")) {
                             System.out.println("Account created successfully:");
                             System.out.println(cus.creat_new_account());

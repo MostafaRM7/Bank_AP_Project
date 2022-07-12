@@ -116,21 +116,59 @@ public class EmployeeClient {
                         }
                         else if (next_choose.equals("11"))
                         {
-                            System.out.println("Enter origin account ID:");
-                            String or_id = input.nextLine();
-                            System.out.println("Enter destination account ID:");
-                            String des_id = input.nextLine();
-                            Account from = Account.get_account_by_id(or_id);
-                            Account to = Account.get_account_by_id(des_id);
-                            if (from != null && to != null)
+                            System.out.println("[1] Simple origin account");
+                            System.out.println("[2] Deposit origin account");
+                            String origin_type = input.nextLine();
+                            // origin simple
+                            if(origin_type.equals("1"))
                             {
-                                System.out.println("How much money do you want to withdraw:");
-                                int amount = input.nextInt();
-                                new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
-                            }
-                            else
-                            {
-                                System.out.println("Destination or origin account ID incorrect");
+                                System.out.println("Enter origin account ID:");
+                                String or_id = input.nextLine();
+                                Account from = Account.get_account_by_id(or_id);
+                                if(from != null)
+                                {
+                                    System.out.println("[1] Simple destination account");
+                                    System.out.println("[2] Deposit destination account");
+                                    String des_type = input.nextLine();
+                                    //destination simple
+                                    if(des_type.equals("1"))
+                                    {
+                                        System.out.println("Enter destination account ID:");
+                                        String des_id = input.nextLine();
+                                        Account to = Account.get_account_by_id(des_id);
+                                        if (to != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw:");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, from, to, LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                    // destination deposit
+                                    else if (des_type.equals("2"))
+                                    {
+                                        System.out.println("Enter deposit account ID:");
+                                        String des_id = input.nextLine();
+                                        Deposit dep = Deposit.get_deposit_by_id(des_id);
+                                        if (dep != null)
+                                        {
+                                            System.out.println("How much money do you want to withdraw:");
+                                            double amount = input.nextDouble();
+                                            new Transaction(amount, from, dep, LocalDateTime.now()).withdraw();
+                                        }
+                                        else
+                                        {
+                                            System.out.println("Destination ID is incorrect");
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    System.out.println("Origin ID is incorrect");
+                                }
                             }
                         }
                         else if (next_choose.equals("12")) {

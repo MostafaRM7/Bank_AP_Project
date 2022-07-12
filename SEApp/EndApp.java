@@ -86,7 +86,7 @@ public class EndApp implements SE
         file_clear.close();
         for (Deposit dep: data)
         {
-            deposit_writer.append(dep.getOwner().getName() + space + dep.getMoney() + space + dep.getDuration() + space + dep.getOwner_id());
+            deposit_writer.append(dep.getOwner().getName() + space + dep.getMoney() + space + dep.getDuration() + space + dep.getOwner_id() + "\n");
         }
         deposit_writer.close();
     }
