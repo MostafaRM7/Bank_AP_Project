@@ -52,15 +52,35 @@ public class CustomerClient
                     while (true) {
                         customer_menu();
                         String next_choose = input.nextLine();
-                        if (next_choose.equals("1")) // show all accounts
+                        if (next_choose.equals("1")) // show all accounts //Done
                         {
                             System.out.println("Current accounts:");
-                            System.out.println(cus.getAll_accounts());
-                        } else if (next_choose.equals("2")) // show balance
+                            if (cus.getAll_accounts().size()==0)
+                            {
+                                System.out.println("you don't have any account yet !");
+                            }
+                            else
+                            {
+                                System.out.println(cus.getAll_accounts());
+                            }
+
+                        }
+                        else if (next_choose.equals("2")) // show balance // Done
                         {
                             System.out.println("Account ID:");
-                            System.out.println("Balance: " + cus.get_account_by_id(input.nextLine()).getMoney());
-                        } else if (next_choose.equals("3")) // charge account
+                            String id=input.nextLine();
+                            if(Account.get_account_by_id(id )== null)
+                            {
+                                System.out.println("ID is incorrect");
+                            }
+                            else
+                            {
+                                Account acc=Account.get_account_by_id(id);
+                                System.out.println("Balance: " + acc.getMoney());
+                            }
+
+                        }
+                        else if (next_choose.equals("3")) // charge account //Done
                         {
                             System.out.println("Account ID:");
                             String acc_id = input.nextLine();
@@ -71,6 +91,7 @@ public class CustomerClient
                             } else {
                                 System.out.println("Account not found !");
                             }
+
                         }
                         else if (next_choose.equals("4")) // withdrawal
                         {
@@ -183,11 +204,20 @@ public class CustomerClient
                         } else if (next_choose.equals("6")) {
                             System.out.println("Account created successfully:");
                             System.out.println(cus.creat_new_account());
-                        } else if (next_choose.equals("7")) {
+                        } else if (next_choose.equals("7"))
+                        {
                             System.out.println("Account ID: ");
                             String acc_id = input.nextLine();
-                            System.out.println(Transaction.get_account_transaction(Account.get_account_by_id(acc_id)));
-                        } else if (next_choose.equals("8")) {
+                            if(Transaction.get_account_transaction(Account.get_account_by_id(acc_id)).size()==0)
+                            {
+                                System.out.println("no transaction yet !");
+                            }
+                            else
+                            {
+                                System.out.println(Transaction.get_account_transaction(Account.get_account_by_id(acc_id)));
+                            }
+                        }
+                            else if (next_choose.equals("8")) {
                             System.out.println("Account ID:");
                             String ac_id = input.nextLine();
                             System.out.println("Enter your password again");
@@ -208,6 +238,26 @@ public class CustomerClient
                         else if(next_choose.equals("10"))
                         {
                             System.out.println(cus.getAll_deposits());
+                        }
+                        else if(next_choose.equals("11"))
+                        {
+                            System.out.println("Account ID:");
+                            String ac_id = input.nextLine();
+                            System.out.println("N.I.D:");
+                            String national_id = input.nextLine();
+                            if(Customer.get_customer_by_national_id(national_id) == null || Account.get_account_by_id(ac_id) == null)
+                            {
+                                System.out.println("National ID / Account ID is incorrect");
+                            }
+                            else
+                            {
+                                Account acc=Account.get_account_by_id(ac_id);
+                                System.out.println("Amount:");
+                                double amount = input.nextDouble();
+                                acc.request_loan(amount,national_id);
+
+                            }
+
                         }
                         else if (next_choose.equals("0")) // exit
                         {
@@ -253,6 +303,7 @@ public class CustomerClient
                 [8] Remove account
                 [9] Creat deposit account
                 [10] Show all deposit accounts
+                [11] Request loan
                 
                 [0] Exit to main menu
                 """;
